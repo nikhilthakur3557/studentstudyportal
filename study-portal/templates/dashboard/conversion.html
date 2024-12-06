@@ -1,0 +1,52 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container text-center">
+    <h1 class="mb-4">About Our Project</h1>
+    <p class="lead">Welcome to our project! This platform is designed to help you manage your daily tasks, study materials, and more. Below are the different sections available for you to explore:</p>
+
+    <!-- Homework Section -->
+    <div class="mb-4">
+        <a href="{% url 'homework' %}" class="btn btn-outline-info btn-lg">
+            <i class="fa fa-book"></i> Homework
+        </a>
+    </div>
+
+    <!-- Todo Section -->
+    <div class="mb-4">
+        <a href="{% url 'todo' %}" class="btn btn-outline-info btn-lg">
+            <i class="fa fa-check-square"></i> Todo
+        </a>
+    </div>
+
+    <!-- YouTube Section -->
+    <div class="mb-4">
+        <a href="{% url 'youtube' %}" class="btn btn-outline-info btn-lg">
+            <i class="fa fa-video-camera"></i> YouTube
+        </a>
+    </div>
+
+    <!-- Dictionary Section -->
+    <div class="mb-4">
+        <a href="{% url 'dictionary' %}" class="btn btn-outline-info btn-lg">
+            <i class="fa fa-book"></i> Dictionary
+        </a>
+    </div>
+
+    <!-- Wiki Section -->
+    <div class="mb-4">
+        <a href="{% url 'wiki' %}" class="btn btn-outline-info btn-lg">
+            <i class="fa fa-info-circle"></i> Wiki
+        </a>
+    </div>
+
+    <!-- Notes Section -->
+    <div class="mb-4">
+        <a href="{% url 'notes' %}" class="btn btn-outline-info btn-lg">
+            <i class="fa fa-sticky-note"></i> Notes
+        </a>
+    </div>
+
+    <p class="mt-5">Feel free to explore each section to help you with your studies and daily tasks!</p>
+</div>
+{% endblock content %}

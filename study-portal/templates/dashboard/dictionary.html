@@ -1,0 +1,50 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+<section class='text-center container'>
+    <h2>Student Dictionary</h2>
+    <p>Enter any word to get the phonetics, definition, and an example for the word</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- Render the form -->
+        <input class="btn btn-danger" type="submit" value="Submit">
+    </form><br>
+    
+    <!-- Display the word results if available -->
+    {% if definition_data %}
+        {% if definition_data.error %}
+            <h2 class="text-danger">Error: {{ definition_data.error }}</h2>
+        {% else %}
+            <div class="content-section p-0 mt-5">
+                <div class="custom-header">
+                    <h2>{{ definition_data.word }}</h2>
+                    
+                    {% if definition_data.phonetics %}
+                        <h6>Phonetics: {{ definition_data.phonetics.0.text }}</h6>
+                        <audio id="player" controls>
+                            <source src="{{ definition_data.phonetics.0.audio }}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div>
+                            <i class='fa fa-volume-up fa-2x'></i>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <hr class="p-0 m-0">
+
+                <p class="float-left">
+                    <h4><b>Definition:</b> {{ definition_data.definition }}</h4>
+                    <h4><b>Example:</b> {{ definition_data.example }}</h4>
+                </p>
+
+                {% if definition_data.synonyms %}
+                    <h5><b>Synonyms:</b> {{ definition_data.synonyms|join:", " }}</h5>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% else %}
+        <h2>Enter a word to get its details.</h2>
+    {% endif %}
+</section>
+{% endblock content %}
